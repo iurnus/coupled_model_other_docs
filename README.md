@@ -1,1 +1,2 @@
-# coupled_model_other_docs
+
+some other documentations on the coupled model
