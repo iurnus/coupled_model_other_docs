@@ -27,6 +27,7 @@ WRF requires a number of fields as input.
 If any masked field is ingested, then a LANDSEA field is recommended
 Water equivalent snow depth (SNOW) is a nice field to have, but not required.
 SEAICE is good to have for a high latitude winter case, but it is not required.
+==========
 Single level data (GetERA5-sl.py)
 import cdsapi
 
@@ -51,6 +52,8 @@ c.retrieve(
         'time':'00/to/23/by/1',
     },
     'ERA5-DATE1-DATE2-sl.grib')
+
+==========
 Pressure level data (GetERA5-pl.py)
 import cdsapi
 
@@ -85,6 +88,8 @@ c.retrieve(
         ]
     },
     'ERA5-DATE1-DATE2-pl.grib')
+
+==========
 Automation script (Download)
 You can automate the script rather than change elements one by one.
 #!/bin/bash -l
@@ -124,12 +129,18 @@ mv ERA5-${DATE1}-${DATE2}-sl.grib ERA5-${DATE1}-${DATE2}-pl.grib ${DATADIR}/$YY1
 
 
 exit 0
+
+==========
 geogrid
 Run geogrid.exe as usual.
 If you’re not familiar with WRF, please check the online tutorial in detail.
+
+==========
 ungrib
 Run ungrib.exe by using the Vtable.ERA-interim.pl table:
 $ ln -s ./ungrib/Variable_Tables/Vtable.ERA-interim.pl Vtable
+
+==========
 metgrid
 Run metgrid.exe as usual.
 References
