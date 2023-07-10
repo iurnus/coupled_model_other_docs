@@ -27,8 +27,14 @@ WRF requires a number of fields as input.
 If any masked field is ingested, then a LANDSEA field is recommended
 Water equivalent snow depth (SNOW) is a nice field to have, but not required.
 SEAICE is good to have for a high latitude winter case, but it is not required.
+
 ==========
-Single level data (GetERA5-sl.py)
+To Download ERA5, CDS API is recommended:
+https://cds.climate.copernicus.eu/api-how-to
+
+==========
+Single level data (Create a file: GetERA5-sl.py)
+==========
 import cdsapi
 
 c = cdsapi.Client()
@@ -54,7 +60,8 @@ c.retrieve(
     'ERA5-DATE1-DATE2-sl.grib')
 
 ==========
-Pressure level data (GetERA5-pl.py)
+Pressure level data (Create a file: GetERA5-pl.py)
+==========
 import cdsapi
 
 c = cdsapi.Client()
