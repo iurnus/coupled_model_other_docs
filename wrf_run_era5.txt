@@ -34,6 +34,7 @@ https://cds.climate.copernicus.eu/api-how-to
 
 ==========
 Single level data (Create a file: GetERA5-sl.py)
+NOTE: Check the most recent python code from CDS website.
 ==========
 import cdsapi
 
@@ -61,6 +62,7 @@ c.retrieve(
 
 ==========
 Pressure level data (Create a file: GetERA5-pl.py)
+NOTE: Check the most recent python code from CDS website.
 ==========
 import cdsapi
 
