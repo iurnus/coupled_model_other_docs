@@ -1,16 +1,21 @@
 How to build the coupled model for the Arabian Sea?
 
 Download everything here (it would take some time):
-wget ftp://sioftp.ucsd.edu/CW3E_DataShare/RSun_SKRIPS/generate_arabian_sea_wave.zip
+wget ftp://sioftp.ucsd.edu/CW3E_DataShare/RSun_SKRIPS/generate_ar_wave.zip
 or
-wget -r -nH --cut-dirs=2 ftp://sioftp.ucsd.edu/CW3E_DataShare/RSun_SKRIPS/generate_arabian_sea_wave/
+wget -r -nH --cut-dirs=2 ftp://sioftp.ucsd.edu/CW3E_DataShare/RSun_SKRIPS/generate_ar_wave/
 
 —————————
 
 First, we use WW3 gridgen tool to generate the bathymetry and wave model. We can get the gridgen tool from here (the official GitHub link does not have supporting documentation):
 
+https://github.com/NOAA-EMC/gridgen
 ftp://ftp.ifremer.fr/ifremer/ww3/COURS/WAVES_SHORT_COURSE/TUTORIALS/TUTORIAL_GRIDGEN/waves-workshop-exercise-gridgen.pdf
 https://croco-ocean.gitlabpages.inria.fr/croco_doc/tutos/tutos.16.coupling.prepro.ww3.html
+
+WW3 gridgen is here:
+https://github.com/NOAA-EMC/gridgen
+wget ftp://polar.ncep.noaa.gov/waves/gridgen/gridgen_addit.tar.gz
 
 Then you can use gridgen to generate the grid for WW3. The bathymetry of the WW3 grid will also be used as the bathymetry in MITgcm. I have attached the scripts to use gridgen. Please go through the gridgen tutorial before using this code:
 
@@ -18,7 +23,7 @@ test_ww3_grid/test_075.m
 
 After running test_075.m, we get (1) AS-075.* files for WW3 grid, and (2) depth_mitgcm.mat for MITgcm bathymetry.
 
-Pay attention to the inputs in test_075.m when running on another machine.
+Check the input variables in test_075.m when running on another machine.
 
 To set up the WW3 model, we should (1) run the global WW3 model and output the boundary condition for the regional model; (2) run a spin-up model for the regional domain using the boundary condition from the global model; (3) perform the production run using restart file from step (2) and the boundary conditions from (1). This is not necessary for the coupled model without using waves.
 
@@ -26,7 +31,7 @@ To set up the WW3 model, we should (1) run the global WW3 model and output the b
 
 Next, we prepare the MITgcm model. We do everything in mitgcm-preprocess folder.
 
-First we use the Matlab code to generate the bathymetry (copy the bathymetry file depth_mitgcm.mat to this folder before running it):
+First, we use the Matlab code to generate the bathymetry (copy the bathymetry file depth_mitgcm.mat to this folder before running it):
 gen_mesh_no_mask/genMesh.m
 
 Then, get the HYCOM initial and boundary conditions. Make necessary changes if you want to download the HYCOM data at a different time. I am using the HYCOM GOFS 3.1 data (more about the HYCOM data is here: https://www.hycom.org/dataserver/gofs-3pt1/analysis): 
@@ -34,7 +39,7 @@ get_hycom/get_all.m
 get_hycom/get_east.m
 get_hycom/get_south.m
 
-There might be missing data in HYCOM. I usually do an average of two neighbouring datasets to get the missing data.
+There might be missing data in HYCOM. I usually average two neighbouring datasets to get the missing data.
 
 Use obcs=‘east’ and ‘south’ to generate the HYCOM boundary conditions (run the code twice):
 get_hycom/gen_obcs_noncorrect.m
@@ -62,6 +67,6 @@ Next, prepare the WRF model as mentioned in the other documentation.
 
 —————————
 
-Finally we get the *.bin files from MITgcm and the *.nc files from WRF. Now we can prepare the coupled model based on L3C1 and L3C2 cases.
+Finally, we get the *.bin files from MITgcm and the *.nc files from WRF. Now we can prepare the coupled model based on L3C1 and L3C2 cases.
 
 
