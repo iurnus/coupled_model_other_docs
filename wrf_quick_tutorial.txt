@@ -2,9 +2,18 @@ WRF quick tutorial
 
 Download WRF, WPS from GitHub and compile them.
 
+Download links for WRF and WPS:
+https://github.com/wrf-model/wrf
+https://github.com/wrf-model/wps
+
+How to compile WRF:
+https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php
+
+---------------------------------------------------------------------
+
 STEP 1: set up the domain
 
-For WPS, download the WRF geog data and save them.
+For WPS, download the WRF geog data and save them:
 https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html
 
 Modify the WPS namelist file.
