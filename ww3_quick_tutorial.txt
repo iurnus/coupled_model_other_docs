@@ -1,0 +1,17 @@
+Generating WW3 regional model:
+
+1. Download WW3 6.07.1 from GitHub:
+https://github.com/NOAA-EMC/WW3/releases/tag/6.07.1
+
+2. Generate the regional WW3 grid using gridgen:
+https://github.com/NOAA-EMC/gridgen
+
+3. After generating the regional model, run the global model and output the
+wave information at the boundary points. Spin-up the wave model for 15 or more
+days. No initial condition is needed. 
+
+5. Generate the boundary condition for the regional model.
+
+6. Run the regional model. Spin-up the wave model for 15 or more days. No
+initial condition is needed.
+
